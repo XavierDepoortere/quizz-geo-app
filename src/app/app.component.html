@@ -1,0 +1,25 @@
+<nav class="fixed">
+  <div class="nav-wrapper blue darken-1">
+    <div
+      (click)="toggleMenu()"
+      data-target="mobile-menu"
+      class="sidenav-trigger"
+    >
+      <i *ngIf="viewMenu" class="material-icons">menu</i>
+      <i *ngIf="!viewMenu" class="material-icons">close</i>
+    </div>
+
+    <div (click)="goToHome()" class="brand-logo center">Quizz-Géo</div>
+  </div>
+</nav>
+<div class="divider test"></div>
+<ul class="blue darken-1 container-menu" [class.show-menu]="viewMenu">
+  <li (click)="goToQuizz()" class="font-menu">Jouer</li>
+
+  <li class="font-menu">Statistiques</li>
+
+  <li (click)="goToAPropos()" class="font-menu">Réglages</li>
+  <li (click)="goToAPropos()" class="font-menu">A propos</li>
+</ul>
+
+<router-outlet></router-outlet>

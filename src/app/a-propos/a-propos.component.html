@@ -1,0 +1,46 @@
+<div class="bloc-container" [class.hidden-list]="!goToHomeService.isOn">
+  <div class="container">
+    <h5>À propos de l'application de quizz géographique</h5>
+    <p>
+      Bienvenue dans l'application de quizz géographique ! Cette application a
+      été conçue pour tester vos connaissances en géographie à travers des
+      questions amusantes.
+    </p>
+    <p>
+      Objectif : Répondez correctement aux questions et gagnez des points pour
+      chaque réponse juste. Plus vous répondez correctement rapidement, plus
+      vous gagnez de points !
+    </p>
+    <h5>Caractéristiques de l'application :</h5>
+    <ul>
+      <li>
+        Questions variées : Des questions sur les capitales, les pays, les
+        drapeaux, et bien plus encore !
+      </li>
+      <li>
+        Chronomètre : Chaque question a un temps limite pour répondre, alors
+        soyez rapide !
+      </li>
+      <li>
+        Classement : Suivez votre score et comparez-vous aux autres joueurs dans
+        le classement.
+      </li>
+    </ul>
+    <p>
+      Cette application est destinée à des fins éducatives et divertissantes.
+      Nous espérons que vous apprécierez tester vos connaissances géographiques
+      et vous amuser en jouant à nos quizz.
+    </p>
+    <p>
+      Pour toute question ou suggestion, n'hésitez pas à nous contacter à
+      l'adresse : contact@quiz-geo.com.
+    </p>
+    <br />
+
+    <div class="row">
+      <div class="col s12 offset-s10">
+        <i (click)="goToHome()" class="material-icons">navigate_before</i>
+      </div>
+    </div>
+  </div>
+</div>

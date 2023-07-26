@@ -1,1 +1,16 @@
-/* You can add global styles to this file, and also import other style files */
+*,
+::before,
+::after,
+body {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  height: 100%;
+  width: 100%;
+  background-image: url("./assets/img/background.png");
+  background-size: cover;
+  background-repeat: no-repeat;
+}

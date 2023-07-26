@@ -1,0 +1,21 @@
+.nav-wrapper {
+  z-index: 99;
+}
+
+.font-menu {
+  color: #ffffff;
+  padding-left: 18%;
+}
+.container-menu {
+  margin: 0;
+  width: 33%;
+  z-index: 98;
+  transition: transform 0.5s ease; /* Définit la transition pour l'animation */
+  transform: translateY(0%);
+  padding-bottom: 2%;
+  border-radius: 0% 0% 2% 0%;
+}
+
+.container-menu.show-menu {
+  transform: translateY(-102%);
+}

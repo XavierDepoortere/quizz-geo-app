@@ -1,0 +1,84 @@
+.chip-with-border {
+  border: 3px solid #bbdefb;
+  border-radius: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.row {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+.container {
+  margin-top: -90px;
+}
+
+.btn-right,
+.btn-light {
+  margin-top: 10%;
+  width: 100%;
+}
+.btn-left {
+  opacity: 0;
+  transform: translateX(-100%);
+  animation: slideLeft 2s forwards;
+}
+
+.btn-right {
+  opacity: 0;
+  transform: translateX(100%);
+  animation: slideRight 2s forwards;
+}
+
+@keyframes slideLeft {
+  0% {
+    opacity: 0;
+    transform: translateX(-100%);
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+@keyframes slideRight {
+  0% {
+    opacity: 0;
+    transform: translateX(100%);
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+.btn-left.hidden-list,
+.btn-right.hidden-list {
+  transform: translateX(0%);
+  animation: slideOut 0.5s forwards;
+}
+@keyframes slideOut {
+  0% {
+    opacity: 1;
+    transform: translateX(0%);
+  }
+  100% {
+    opacity: 0;
+  }
+}
+.selected {
+  background-color: red !important; /* Couleur de fond pour le bouton sélectionné */
+}
+
+.correct {
+  background-color: green !important; /* Couleur de fond pour la réponse correcte */
+}
+.drapeau {
+  display: flex;
+
+  width: 82vw;
+  height: 22vh;
+  border: 5px #1e88e5 solid;
+  background-size: cover;
+  background-repeat: no-repeat;
+}

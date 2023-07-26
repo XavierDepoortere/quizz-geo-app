@@ -1,0 +1,40 @@
+<div class="container col s12">
+  <br />
+  <div class="row">
+    <div>
+      <h3 class="center">Score quizz</h3>
+      <h4 class="center">{{ score }}/20</h4>
+      <div *ngIf="score && +score > 14" class="center">
+        <img src="../../../assets/img/smiley/smileyHigh.png" />
+      </div>
+      <div
+        *ngIf="score && +score >= 11 && score && +score <= 14"
+        class="center"
+      >
+        <img src="../../../assets/img/smiley/smileyUpperMedium.png" />
+      </div>
+      <div *ngIf="score && +score >= 6 && score && +score <= 10" class="center">
+        <img src="../../../assets/img/smiley/smileyLowerMedium.png" />
+      </div>
+      <div *ngIf="score && +score < 6" class="center">
+        <img src="../../../assets/img/smiley/smileyLow.png" />
+      </div>
+      <br />
+      <br />
+      <div class="col s10 offset-s1">
+        <div
+          (click)="goToQuizzDrapeau()"
+          class="btn-right chip blue darken-1 white-text bold chip-with-border"
+        >
+          Recommencer
+        </div>
+        <div
+          (click)="goToHome()"
+          class="btn-right chip blue darken-1 white-text bold chip-with-border"
+        >
+          Accueil
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
