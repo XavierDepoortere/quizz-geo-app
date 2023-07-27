@@ -9,6 +9,7 @@ import { GoToHomeService } from "src/app/go-to-home.service";
 })
 export class QuizzResultatComponent {
   score: string | null = "";
+  quizz: string | null = "";
   constructor(
     private route: ActivatedRoute,
     private router: Router,
@@ -17,6 +18,7 @@ export class QuizzResultatComponent {
 
   ngOnInit() {
     this.score = this.route.snapshot.paramMap.get("score");
+    this.quizz = this.route.snapshot.paramMap.get("quizz");
   }
 
   goToHome() {
@@ -24,6 +26,12 @@ export class QuizzResultatComponent {
   }
 
   goToQuizzDrapeau() {
-    this.router.navigate(["/quizz-drapeau"]);
+    if (this.quizz === "drapeau") {
+      this.router.navigate(["/quizz-drapeau"]);
+    }
+
+    if (this.quizz === "pays") {
+      this.router.navigate(["/quizz-pays"]);
+    }
   }
 }

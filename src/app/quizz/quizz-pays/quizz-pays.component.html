@@ -3,41 +3,38 @@
     <div>
       <h3 class="center">Question {{ indexQuestion + 1 }}/20</h3>
 
-      <img class="drapeau" [src]="quizzDrapeau[indexQuestion].flag" />
-
+      <h4 class="center">{{ quizzPays[indexQuestion].name }}</h4>
+      <br />
       <div class="col s10 offset-s1">
-        <div
-          class="btn-right chip blue darken-1 white-text bold chip-with-border"
+        <img
+          class="drapeau mini"
+          [src]="shuffledChoices[0]"
           [ngClass]="{
-            selected: selectedChoice === shuffledChoices[0],
-            correct: isAnswerCorrect && selectedChoice === shuffledChoices[0]
+            selectedP: selectedChoice === shuffledChoices[0],
+            correctP: isAnswerCorrect && selectedChoice === shuffledChoices[0]
           }"
           (click)="validateAnswer(shuffledChoices[0])"
-        >
-          {{ shuffledChoices[0] }}
-        </div>
-
-        <div
-          class="btn-right chip blue darken-1 white-text bold chip-with-border"
+        />
+        <br />
+        <img
+          class="drapeau mini"
+          [src]="shuffledChoices[1]"
           [ngClass]="{
-            selected: selectedChoice === shuffledChoices[1],
-            correct: isAnswerCorrect && selectedChoice === shuffledChoices[1]
+            selectedP: selectedChoice === shuffledChoices[1],
+            correctP: isAnswerCorrect && selectedChoice === shuffledChoices[1]
           }"
           (click)="validateAnswer(shuffledChoices[1])"
-        >
-          {{ shuffledChoices[1] }}
-        </div>
-
-        <div
-          class="btn-right chip blue darken-1 white-text bold chip-with-border"
+        />
+        <br />
+        <img
+          class="drapeau mini"
+          [src]="shuffledChoices[2]"
           [ngClass]="{
-            selected: selectedChoice === shuffledChoices[2],
-            correct: isAnswerCorrect && selectedChoice === shuffledChoices[2]
+            selectedP: selectedChoice === shuffledChoices[2],
+            correctP: isAnswerCorrect && selectedChoice === shuffledChoices[2]
           }"
           (click)="validateAnswer(shuffledChoices[2])"
-        >
-          {{ shuffledChoices[2] }}
-        </div>
+        />
         <div
           (click)="next()"
           class="btn-right chip blue darken-1 white-text bold chip-with-border"

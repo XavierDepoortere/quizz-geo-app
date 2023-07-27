@@ -73,6 +73,14 @@
 .correct {
   background-color: green !important; /* Couleur de fond pour la réponse correcte */
 }
+
+.selectedP {
+  border-color: red !important; /* Couleur de fond pour le bouton sélectionné */
+}
+
+.correctP {
+  border-color: green !important; /* Couleur de fond pour la réponse correcte */
+}
 .drapeau {
   display: flex;
 
@@ -81,4 +89,9 @@
   border: 5px #1e88e5 solid;
   background-size: cover;
   background-repeat: no-repeat;
+}
+.mini {
+  margin-left: 5vw;
+  width: 41vw !important;
+  height: 11vh !important;
 }

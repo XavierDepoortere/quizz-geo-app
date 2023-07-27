@@ -16,7 +16,8 @@ export class QuizzDrapeauComponent implements OnInit {
   public isDataLoaded: boolean = false;
   selectedChoice: string | null = null;
   isAnswerCorrect: boolean | null = null;
-  public score: number = 0;
+  score: number = 0;
+  quizz: string = "drapeau";
 
   constructor(
     private mockQuizzService: MockQuizzService,
@@ -27,7 +28,7 @@ export class QuizzDrapeauComponent implements OnInit {
   ngOnInit() {
     console.log("test init");
     this.apiGeoService.countriesSubject.subscribe((data: any) => {
-      this.quizzDrapeau = this.mockQuizzService.getCreateMockQuizz();
+      this.quizzDrapeau = this.mockQuizzService.getCreateMockQuizz(this.quizz);
       console.log("isDataLoaded:", this.isDataLoaded); // Vérifier la valeur de isDataLoaded après le chargement des données
       this.isDataLoaded = true; // Définir la variable isDataLoaded sur true après le chargement des données
       console.log("isDataLoaded:", this.isDataLoaded); // Vérifier la valeur de isDataLoaded après le chargement des données
@@ -73,7 +74,6 @@ export class QuizzDrapeauComponent implements OnInit {
       this.shuffleChoices();
       this.selectedChoice = null;
     } else {
-      console.log("fin du quizz");
       this.apiGeoService.resetCountriesSubject();
       this.mockQuizzService.resetQuizz();
       //this.quizzDrapeau = [];
@@ -81,7 +81,7 @@ export class QuizzDrapeauComponent implements OnInit {
       //this.shuffleChoices();
       //this.isDataLoaded = false;
 
-      this.router.navigate(["/quizz-resultat", this.score]);
+      this.router.navigate(["/quizz-resultat", this.score, this.quizz]);
     }
   }
 }

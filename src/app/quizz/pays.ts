@@ -3,6 +3,6 @@ export class Pays {
     public id: number,
     public name: Array<string>,
     public capital: string,
-    public flag: string
+    public flag: Array<string>
   ) {}
 }
