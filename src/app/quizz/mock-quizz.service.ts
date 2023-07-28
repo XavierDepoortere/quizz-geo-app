@@ -25,13 +25,18 @@ export class MockQuizzService {
         switch (select) {
           case "pays":
             let countryPays = this.createQuizzPays(randomData, i, id);
-            console.log("pays");
+
             this.quizz.push(countryPays);
             break;
           case "drapeau":
             let countryDrapeau = this.createQuizzDrapeau(randomData, i, id);
-            console.log("drapeau");
+
             this.quizz.push(countryDrapeau);
+            break;
+          case "capital":
+            let countryCapital = this.createQuizzCapital(randomData, i, id);
+
+            this.quizz.push(countryCapital);
             break;
 
           // Si select n'est ni "drapeau" ni "pays", vous pouvez ajouter une logique de gestion d'erreur ici
@@ -41,7 +46,7 @@ export class MockQuizzService {
         }
       }
     }
-
+    console.log(this.quizz);
     return this.quizz;
   }
 
@@ -101,6 +106,36 @@ export class MockQuizzService {
     return country;
   }
 
+  createQuizzCapital(randomData: any[], i: number, id: number): Pays {
+    const countryData = randomData[i];
+    let capitalFalse1 =
+      this.apiGeoService.countriesData[this.randomIndex()].capital[0];
+    let capitalFalse2 =
+      this.apiGeoService.countriesData[this.randomIndex()].capital[0];
+    while (
+      capitalFalse1 == countryData.capital[0] ||
+      capitalFalse1 == capitalFalse2
+    ) {
+      capitalFalse1 =
+        this.apiGeoService.countriesData[this.randomIndex()].capital[0];
+    }
+
+    while (
+      capitalFalse2 == countryData.capital[0] ||
+      capitalFalse1 == capitalFalse2
+    ) {
+      capitalFalse2 =
+        this.apiGeoService.countriesData[this.randomIndex()].capital[0];
+    }
+
+    const country = new Pays(
+      id++,
+      countryData.translations.fra.common,
+      [countryData.capital[0], capitalFalse1, capitalFalse2],
+      countryData.flags.png
+    );
+    return country;
+  }
   resetQuizz() {
     this.quizz = [];
   }

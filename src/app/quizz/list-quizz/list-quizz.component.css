@@ -16,9 +16,12 @@
 }
 
 .btn-right,
-.btn-light {
+.btn-left {
   margin-top: 10%;
   width: 100%;
+  height: 5vh;
+  text-align: center;
+  line-height: 1.2;
 }
 .btn-left {
   opacity: 0;
@@ -83,7 +86,6 @@
 }
 .drapeau {
   display: flex;
-
   width: 82vw;
   height: 22vh;
   border: 5px #1e88e5 solid;
@@ -91,7 +93,15 @@
   background-repeat: no-repeat;
 }
 .mini {
-  margin-left: 5vw;
+  margin-left: 10vw;
   width: 41vw !important;
   height: 11vh !important;
+}
+.titre {
+  display: flex;
+
+  width: 82vw;
+  height: 11vh;
+  text-align: center;
+  justify-content: center;
 }

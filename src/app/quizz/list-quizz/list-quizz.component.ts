@@ -23,6 +23,9 @@ export class ListQuizzComponent implements OnInit {
   goToHome() {
     this.goToHomeService.goToHome();
   }
+  goToQuizzCapital() {
+    this.router.navigate(["/quizz-capital"]);
+  }
   goToQuizzDrapeau() {
     this.router.navigate(["/quizz-drapeau"]);
   }

@@ -25,13 +25,16 @@ export class QuizzResultatComponent {
     this.goToHomeService.goToHome();
   }
 
-  goToQuizzDrapeau() {
+  goToQuizz() {
     if (this.quizz === "drapeau") {
       this.router.navigate(["/quizz-drapeau"]);
     }
 
     if (this.quizz === "pays") {
       this.router.navigate(["/quizz-pays"]);
+    }
+    if (this.quizz === "capital") {
+      this.router.navigate(["/quizz-capital"]);
     }
   }
 }

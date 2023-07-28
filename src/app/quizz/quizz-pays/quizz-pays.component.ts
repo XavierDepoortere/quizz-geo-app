@@ -3,6 +3,7 @@ import { MockQuizzService } from "../mock-quizz.service";
 import { ApiGeoService } from "src/app/api-geo.service";
 import { Router } from "@angular/router";
 import { Pays } from "../pays";
+import { LocalStorageService } from "src/app/services/local-storage.service";
 
 @Component({
   selector: "app-quizz-pays",
@@ -22,17 +23,31 @@ export class QuizzPaysComponent implements OnInit {
   constructor(
     private mockQuizzService: MockQuizzService,
     private apiGeoService: ApiGeoService,
-    private router: Router
+    private router: Router,
+    private localStorageService: LocalStorageService
   ) {}
 
   ngOnInit() {
+    this.apiGeoService.resetCountriesSubject();
+    this.mockQuizzService.resetQuizz();
     console.log("test init");
     this.apiGeoService.countriesSubject.subscribe((data: any) => {
       this.quizzPays = this.mockQuizzService.getCreateMockQuizz(this.quizz);
       console.log("isDataLoaded:", this.isDataLoaded); // Vérifier la valeur de isDataLoaded après le chargement des données
-      this.isDataLoaded = true; // Définir la variable isDataLoaded sur true après le chargement des données
-      console.log("isDataLoaded:", this.isDataLoaded); // Vérifier la valeur de isDataLoaded après le chargement des données
-      this.shuffleChoices();
+      // Utilisation d'une fonction asynchrone pour attendre que this.quizzCapital soit non vide
+      const waitForQuizzCapital = async () => {
+        while (this.quizzPays.length === 0) {
+          await new Promise((resolve) => setTimeout(resolve, 100)); // Attendre 100 millisecondes avant de réessayer
+        }
+
+        // À ce stade, this.quizzCapital est non vide
+        this.isDataLoaded = true; // Définir la variable isDataLoaded sur true après le chargement des données
+        console.log("isDataLoaded:", this.isDataLoaded); // Vérifier la valeur de isDataLoaded après le chargement des données
+        this.shuffleChoices();
+      };
+
+      // Appeler la fonction waitForQuizzCapital pour commencer l'attente
+      waitForQuizzCapital();
     });
   }
 
@@ -74,13 +89,11 @@ export class QuizzPaysComponent implements OnInit {
       this.shuffleChoices();
       this.selectedChoice = null;
     } else {
-      console.log("fin du quizz");
-      this.apiGeoService.resetCountriesSubject();
-      this.mockQuizzService.resetQuizz();
+      this.localStorageService.saveDataToLocalStorage(this.quizz, this.score);
       //this.quizzDrapeau = [];
       //this.indexQuestion = 0;
       //this.shuffleChoices();
-      //this.isDataLoaded = false;
+      this.isDataLoaded = false;
 
       this.router.navigate(["/quizz-resultat", this.score, this.quizz]);
     }

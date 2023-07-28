@@ -1,24 +1,24 @@
 import { Component, OnInit } from "@angular/core";
 import { MockQuizzService } from "../mock-quizz.service";
-import { Pays } from "../pays";
 import { ApiGeoService } from "src/app/api-geo.service";
 import { Router } from "@angular/router";
+import { Pays } from "../pays";
 import { LocalStorageService } from "src/app/services/local-storage.service";
 
 @Component({
-  selector: "app-quizz-drapeau",
-  templateUrl: "./quizz-drapeau.component.html",
+  selector: "app-quizz-capital",
+  templateUrl: "./quizz-capital.component.html",
   styleUrls: ["../list-quizz/list-quizz.component.css"],
 })
-export class QuizzDrapeauComponent implements OnInit {
-  public quizzDrapeau: Pays[] = [];
+export class QuizzCapitalComponent implements OnInit {
+  public quizzCapital: Pays[] = [];
   public indexQuestion: number = 0;
   public shuffledChoices: string[] = [];
   public isDataLoaded: boolean = false;
   selectedChoice: string | null = null;
   isAnswerCorrect: boolean | null = null;
   score: number = 0;
-  quizz: string = "drapeau";
+  quizz: string = "capital";
 
   constructor(
     private mockQuizzService: MockQuizzService,
@@ -32,11 +32,12 @@ export class QuizzDrapeauComponent implements OnInit {
     this.mockQuizzService.resetQuizz();
     console.log("test init");
     this.apiGeoService.countriesSubject.subscribe((data: any) => {
-      this.quizzDrapeau = this.mockQuizzService.getCreateMockQuizz(this.quizz);
+      this.quizzCapital = this.mockQuizzService.getCreateMockQuizz(this.quizz);
       console.log("isDataLoaded:", this.isDataLoaded); // Vérifier la valeur de isDataLoaded après le chargement des données
+
       // Utilisation d'une fonction asynchrone pour attendre que this.quizzCapital soit non vide
       const waitForQuizzCapital = async () => {
-        while (this.quizzDrapeau.length === 0) {
+        while (this.quizzCapital.length === 0) {
           await new Promise((resolve) => setTimeout(resolve, 100)); // Attendre 100 millisecondes avant de réessayer
         }
 
@@ -55,11 +56,12 @@ export class QuizzDrapeauComponent implements OnInit {
     //Fonction pour mélanger les 3 choix
     if (
       this.isDataLoaded && // Vérifier si les données sont chargées
-      this.quizzDrapeau.length > 0 &&
+      this.quizzCapital.length > 0 &&
       this.indexQuestion >= 0 &&
-      this.indexQuestion < this.quizzDrapeau.length
+      this.indexQuestion < this.quizzCapital.length
     ) {
-      this.shuffledChoices = this.quizzDrapeau[this.indexQuestion].name.slice(); // Copie le tableau original
+      this.shuffledChoices =
+        this.quizzCapital[this.indexQuestion].capital.slice(); // Copie le tableau original
       this.shuffledChoices.sort(() => Math.random() - 0.5); // Mélange les éléments du tableau
     }
   }
@@ -80,12 +82,11 @@ export class QuizzDrapeauComponent implements OnInit {
 
   isChoiceCorrect(choice: string): boolean {
     //Fonction pour comparer la réponse de l'utilisateur avec la réponse du quizz
-    const correctAnswer = this.quizzDrapeau[this.indexQuestion].name[0];
+    const correctAnswer = this.quizzCapital[this.indexQuestion].capital[0];
     return choice === correctAnswer;
   }
-
   next() {
-    if (this.indexQuestion < this.quizzDrapeau.length - 1) {
+    if (this.indexQuestion < this.quizzCapital.length - 1) {
       this.indexQuestion++;
       this.shuffleChoices();
       this.selectedChoice = null;
